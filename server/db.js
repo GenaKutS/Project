@@ -1,4 +1,3 @@
-/*
 const {Sequelize} = require('sequelize')  //імпорт сіквалайз і одразу деструктуризую
 
 module.exports = new Sequelize(           //експортуємо об'єкт
@@ -11,4 +10,3 @@ module.exports = new Sequelize(           //експортуємо об'єкт
         port: process.env.DB_PORT
     }
 )
-*/

@@ -1,4 +1,3 @@
-/*
 const sequelize = require('../db') //імпорт сіквалайз
 const {DataTypes} = require('sequelize')  //клас для опису типів
 
@@ -89,4 +88,4 @@ module.exports = {
     Rating,
     TypeBrand,
     DeviceInfo
-}*/
+}
