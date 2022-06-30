@@ -13,7 +13,7 @@
 
 
 #### Доп фічі
-* lint правил (+ add sonar plugin )
+* lint правил ( add sonar plugin + )
     * У lint правила буде входити:
        1. eslint: recommended +
        2. plugin:react/recommended +
@@ -24,7 +24,6 @@
        7. eslint-plugin-prettier +
        8. source.fixAll.eslint +
        
-      
-* Налаштувати гіт-хуки (pre-commit)
+* Налаштувати гіт-хуки (pre-commit +)
 * Реалізуємо авторизацію користувачів за JWT ТОКЕН
 * Повноцінний REST API
