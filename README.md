@@ -16,7 +16,11 @@
 3. Axios -запити на сервер
 
 #### Доп фічі 
-* lint правил
+* lint правил  (+ add sonar plugin) 
+   * В lint правила будет входить: 
+      1. eslint:recommended
+      2. plugin:react/recommended
+      
 * Настроить гит-хуки (pre-commit)
 * Реалізуємо авторизацію користувачів за JWT ТОКЕН
 * Полноценный REST API 
