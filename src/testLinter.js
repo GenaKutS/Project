@@ -10,3 +10,5 @@ const x = 200;
 foo('Gena');
 // eslint-disable-next-line no-console
 console.log(window);
+
+const { name } = Obj

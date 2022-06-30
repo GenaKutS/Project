@@ -1,13 +1,13 @@
 {
     "env": {
-        "browser": true, 
+        "browser": true,
         "es6": true,
         "node": true
     },
-    "extends": ["airbnb/base"],
+    "extends": [
+        "airbnb/base"
+    ],
     "rules": {
-       
-
+        "semi": "off"
     }
-    
 }
