@@ -22,6 +22,7 @@
        5. eslint-plugin-html
        6. eslint-plugin-import
        7. eslint-plugin-prettier
+       8. source.fixAll.eslint
       
 * Налаштувати гіт-хуки (pre-commit)
 * Реалізуємо авторизацію користувачів за JWT ТОКЕН

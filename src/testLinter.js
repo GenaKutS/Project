@@ -1,9 +1,12 @@
-// const a = 1;
+// eslint-disable-next-line no-unused-vars
+const a = 1;
 
-// function foo(name) {
-//   const lastName = name;
-// }
+function foo(name) {
+  return name;
+}
 
-// const x = 200;
-
-// console.log(x);
+// eslint-disable-next-line no-unused-vars
+const x = 200;
+foo('Gena');
+// eslint-disable-next-line no-console
+console.log(window);
