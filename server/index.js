@@ -20,7 +20,7 @@ app.use(fileUpload({}))
 app.use('/api', router)
 
 
-//обработка ошибок должен быть ласт 
+//обработка ошибок должен быть  последний Middleware  
 app.use(errorHandler)
  
 
