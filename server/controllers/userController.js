@@ -3,6 +3,14 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {User, Basket} = require('../models/models') 
 
+const generateJwt = (id, email, role) => {
+    return jwt.sign(
+        {id, email, role},
+        process.env.SECRET_KEY,
+        {expiresIn: '24h'}
+    )
+}
+
 class UserController{
 
   
@@ -23,12 +31,8 @@ class UserController{
             const basket = await Basket.create({userId: user.id})
 
             // генерирую json token 
-            const token = jwt.sign(
-                {id: user.id, email, role}, 
-                process.env.SECRET_KEY, 
-                // ЖИЗНЬ ТОКЕНА   
-                {expiresIn: '24h'}
-             )
+            const token = generateJwt(user.id, user.email, user.role)
+             
 
              return res.json({token})
 
