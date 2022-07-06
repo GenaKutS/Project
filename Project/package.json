@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node ",
     "lint": "eslint  server ",
-    
-    "lint:fix": "eslint ./src --fix --color"
+    "lint:fix": "eslint ./src --fix --color",
+    "prepare": "husky install"
   },
   "prettier": {
     "singleQuote": true,
@@ -31,7 +31,7 @@
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
+    "husky": "^8.0.0",
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1"
   },
@@ -39,6 +39,8 @@
     "hooks": {
       "pre-comit": "npm run lint"
     }
+  },
+  "dependencies": {
+    "husky-init": "^8.0.0"
   }
-
 }
