@@ -4,7 +4,7 @@
 ##   Stack технолгий - Backend
 1. Noda.js(Epress.js) - 
 2. PostgreSQL
-3. Sequelize- ORM дл реалицыоных баз даных 
+3. Sequelize- ORM дл реалиційних баз даних 
 
 
     
@@ -17,13 +17,13 @@
 
 #### Доп фічі 
 * lint правил  (+ add sonar plugin) 
-   * В lint правила будет входить: 
+   * В lint правила буде входити: 
       1. eslint:recommended
       2. plugin:react/recommended
       
-* Настроить гит-хуки (pre-commit)
+* Налаштувати гіт-хуки (pre-commit)
 * Реалізуємо авторизацію користувачів за JWT ТОКЕН
-* Полноценный REST API 
+* Повноцінний REST API 
 
 
  
