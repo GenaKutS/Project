@@ -1,4 +1,4 @@
- npm i  
+ Для запуску airbnb/base npm i  
  Для перевірки конкретного файлу
  cd + шлях до файлу  |  npx eslint TastLinter.js
 
