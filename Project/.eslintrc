@@ -5,9 +5,18 @@
         "node": true
     },
     "extends": [
-        "airbnb/base"
+        "eslint:recommended",
+        "plugin:prettier/recommended",
+        "airbnb/base",
+        "prettier"
     ],
+   
     "rules": {
-        "semi": "off"
-    }
+        "semi": "off",
+        "prettier/prettier": "error"
+    },
+    "plugins": [
+        
+        "prettier"
+    ]
 }
