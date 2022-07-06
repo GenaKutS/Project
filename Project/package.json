@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/TastLinter.js",
-    "lint": "eslint  src ",
+    "start": "node ",
+    "lint": "eslint  server ",
+    
     "lint:fix": "eslint ./src --fix --color"
   },
   "prettier": {
