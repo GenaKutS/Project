@@ -1,1 +1,3 @@
-console.log('hello')
+const somethint = 123;
+
+console.log('hello');
