@@ -30,7 +30,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-comit": " npm run lint "
+      "pre-commit": " npm run lint "
     }
   },
   "dependencies": {
