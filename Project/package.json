@@ -32,8 +32,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-comit": " npm run lint "
+      "pre-commit": "lint-staged"
     }
-  }
- 
+  },
+  "lint-staged": {
+    "src/**/*.+(tsx|ts|scss)": [
+      "prettier --write",
+      "git add ."
+    ]
+  },
 }
