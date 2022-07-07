@@ -6,7 +6,6 @@
   "scripts": {
     "node": " node src/TastLinter.js",
     "lint": "eslint src "
-   
   },
   "repository": {
     "type": "git",
@@ -26,14 +25,15 @@
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1"
   },
   "husky": {
     "hooks": {
-      "precomit": " npm run lint "
+      "pre-comit": " npm run lint "
     }
+  },
+  "dependencies": {
+    "husky": "^4.3.0"
   }
- 
 }
