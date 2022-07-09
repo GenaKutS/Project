@@ -14,6 +14,7 @@
 
 #### Дод фічі
 * Інтерграція сервера і бд використовуючи Sequelize
+* Prettier
 * lint правил ( add sonar plugin + )
     * У lint правила буде входити:
        1. eslint: recommended +
