@@ -8,7 +8,6 @@
     "plugin:prettier/recommended",
     "airbnb/base"
   ],
-  "plugins": ["prettier"],
   "rules": {
     "semi": "off",
     "prettier/prettier": "error"
