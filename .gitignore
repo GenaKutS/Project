@@ -1,0 +1,6 @@
+/Features/node_modules
+/Features/server/node_modules
+/node_modules
+package-lock.json
+package.json
+.vscode/

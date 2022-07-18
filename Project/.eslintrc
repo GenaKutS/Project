@@ -1,0 +1,16 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "airbnb/base"
+    "plugin:sonarjs/recommended"
+  ],
+  "rules": {
+    "semi": "off",
+    "prettier/prettier": "error"
+  }
+}
