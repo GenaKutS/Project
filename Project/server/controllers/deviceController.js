@@ -17,7 +17,7 @@ class DeviceController {
         typeId,
         img: fileName,
       });
-      // приход види строки и нужно парсить
+      
       if (info) {
         info = JSON.parse(info);
         info.forEach((i) =>
