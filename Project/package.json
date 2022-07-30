@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "node": " node src/TastLinter.js",
     "lint": "eslint ./src ",
     "lint:fix": "eslint ./src --fix",
