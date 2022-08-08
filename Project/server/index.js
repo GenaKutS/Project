@@ -17,6 +17,10 @@ app.use(fileUpload({}));
 
 app.use("/api", router);
 
+app.get('/team', (req, res) => {
+  res.send('TITORUK KUTZ IVASHCHENKO')
+})
+
 //обработка ошибок должен быть  последний Middleware
 app.use(errorHandler);
 

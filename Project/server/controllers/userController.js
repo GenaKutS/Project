@@ -24,6 +24,7 @@ class UserController {
     // ЕСЛИ НИЧЕГО НЕ НАШЛИ  ТО ХЕШИМ И СОЗДАЕМ USER
 
     const hashPassword = await bcrypt.hash(password, 5);
+    try {
     const user = await User.create({ email, role, password: hashPassword });
     //create only user
     const basket = await Basket.create({ userId: user.id });
@@ -32,7 +33,11 @@ class UserController {
     const token = generateJwt(user.id, user.email, user.role);
 
     return res.json({ token });
+  } catch (e) {
+    next(ApiErorr.badRequest(e.message));
   }
+  }
+
   async login(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
