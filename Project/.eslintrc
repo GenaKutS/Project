@@ -1,13 +1,18 @@
 {
+  "plugins": ["sonar"],
+  
   "env": {
     "es6": true,
     "node": true
   },
   "extends": [
     "eslint:recommended",
-    "airbnb/base"
+    "airbnb/base",
+    "plugin:sonar/base",
+    "plugin:sonar/recommended"
   ],
   "rules": {
-    "semi": "off"
+    "semi": "off",
+    "sonar/deprecation": 1
   }
 }
