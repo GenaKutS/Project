@@ -10,6 +10,9 @@
     "lint:fix": "eslint ./src --fix",
     "prepare": "husky install"
   },
+  
+  "eslintIgnore": [".gitignore"],
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GenaKutS/Project.git"
