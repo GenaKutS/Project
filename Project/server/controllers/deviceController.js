@@ -68,13 +68,21 @@ class DeviceController {
     return res.json(devices);
   }
 
-  async getOne(req, res) {
-    const { id } = req.params;
-    const device = await Device.findOne({
-      where: { id },
-      include: [{ model: DeviceInfo, as: "info" }],
-    });
-    return res.json(device);
-  }
+getOne (req,res,next) {
+        try{
+            const { id } = req.params;
+       Device.findOne({where:{id}, 
+       include: [{ model: DeviceInfo, as: "info" }], })
+       .then(device=>{
+        if (!device){
+            return next(ApiError.badRequest("id is not configured correctly"));
+        }
+        return res.json(device);
+    })
+    }catch (e) {
+        next(ApiErorr.badRequest(e.message));
+    }
+    
+ }
 }
 module.exports = new DeviceController();
