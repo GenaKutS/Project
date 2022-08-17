@@ -1,4 +1,4 @@
-const uuid = require("uuid");
+const crypto = require('crypto');
 const path = require("path");
 const { Device, DeviceInfo } = require("../models/models");
 const ApiErorr = require("../error/ApiError");
@@ -8,7 +8,7 @@ class DeviceController {
     try {
       let { name, price, brandId, typeId, info } = req.body;
       const { img } = req.files;
-      let fileName = uuid.v4() + ".jpg";
+      let fileName = crypto.randomUUID() + ".jpg";
       img.mv(path.resolve(__dirname, "..", "static", fileName));
       const device = await Device.create({
         name,
