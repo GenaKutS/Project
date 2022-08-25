@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require("crypto");
 const path = require("path");
 const { Device, DeviceInfo } = require("../models/models");
 const ApiErorr = require("../error/ApiError");
@@ -17,7 +17,7 @@ class DeviceController {
         typeId,
         img: fileName,
       });
-      
+
       if (info) {
         info = JSON.parse(info);
         info.forEach((i) =>
@@ -36,53 +36,34 @@ class DeviceController {
   }
 
   async getAll(req, res) {
-    let { brandId, typeId, limit, page } = req.query;
-    page = page || 1;
-    limit = limit || 9; // максимум устройств
-    let offset = page * limit - limit;
+    let { brandId, typeId } = req.query;
     let devices;
-    if (!brandId && !typeId) {
-      devices = await Device.findAndCountAll({ limit, offset });
-    }
-    if (brandId && !typeId) {
-      devices = await Device.findAndCountAll({
-        where: { brandId },
-        limit,
-        offset,
-      });
-    }
-    if (!brandId && typeId) {
-      devices = await Device.findAndCountAll({
-        where: { typeId },
-        limit,
-        offset,
-      });
-    }
-    if (brandId && typeId) {
-      devices = await Device.findAndCountAll({
-        where: { typeId, brandId },
-        limit,
-        offset,
-      });
+    if (
+      (!brandId && !typeId) ||
+      (brandId && !typeId) ||
+      (!brandId && typeId) ||
+      (brandId && typeId)
+    ) {
+      devices = await Device.findAndCountAll();
     }
     return res.json(devices);
   }
 
-getOne (req,res,next) {
-        try{
-            const { id } = req.params;
-       Device.findOne({where:{id}, 
-       include: [{ model: DeviceInfo, as: "info" }], })
-       .then(device=>{
-        if (!device){
-            return next(ApiError.badRequest("id is not configured correctly"));
+  getOne(req, res, next) {
+    try {
+      const { id } = req.params;
+      Device.findOne({
+        where: { id },
+        include: [{ model: DeviceInfo, as: "info" }],
+      }).then((device) => {
+        if (!device) {
+          return next(ApiError.badRequest("id is not configured correctly"));
         }
         return res.json(device);
-    })
-    }catch (e) {
-        next(ApiErorr.badRequest(e.message));
+      });
+    } catch (e) {
+      next(ApiErorr.badRequest(e.message));
     }
-    
- }
+  }
 }
 module.exports = new DeviceController();
