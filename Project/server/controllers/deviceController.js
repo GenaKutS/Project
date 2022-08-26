@@ -8,7 +8,12 @@ class DeviceController {
     try {
       let { name, price, brandId, typeId, info } = req.body;
       const { img } = req.files;
+      var imgs = [img];
+      console.log(imgs.length);
       let fileName = crypto.randomUUID() + ".jpg";
+      const result = await s3Uploadv3(imgs);
+      console.log(result);
+
       img.mv(path.resolve(__dirname, "..", "static", fileName));
       const device = await Device.create({
         name,
