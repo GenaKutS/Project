@@ -1,5 +1,5 @@
 const ApiError = require("../error/ApiError");
-const bcrypt = require("bcrypt");
+const crypto = require('crypto');
 const jwt = require("jsonwebtoken");
 const { User, Basket } = require("../models/models");
 
@@ -23,7 +23,7 @@ class UserController {
     }
     // ЕСЛИ НИЧЕГО НЕ НАШЛИ  ТО ХЕШИМ И СОЗДАЕМ USER
 
-    const hashPassword = await bcrypt.hash(password, 5);
+    const hashPassword = await crypto.createHash(password, 5);
     try {
     const user = await User.create({ email, role, password: hashPassword });
     //create only user
