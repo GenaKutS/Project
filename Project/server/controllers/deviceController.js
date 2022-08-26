@@ -1,20 +1,35 @@
+const upload = require('../download_setting/multer')
 const crypto = require("crypto");
 const path = require("path");
 const { Device, DeviceInfo } = require("../models/models");
 const ApiErorr = require("../error/ApiError");
+const { s3Uploadv3 } = require("../download_setting/s3Service");
+
 
 class DeviceController {
   async create(req, res, next) {
     try {
-      let { name, price, brandId, typeId, info } = req.body;
-      const { img } = req.files;
-      var imgs = [img];
-      console.log(imgs.length);
-      let fileName = crypto.randomUUID() + ".jpg";
-      const result = await s3Uploadv3(imgs);
-      console.log(result);
+      let { name, price, brandId, typeId, info} = req.body;
 
-      img.mv(path.resolve(__dirname, "..", "static", fileName));
+      const { img } = req.files;
+
+      let fileName = crypto.randomUUID() + img.name;
+
+      if(file.mimetype === "image/png" || 
+      file.mimetype === "image/jpg"|| 
+      file.mimetype === "image/jpeg")
+      {
+        const result = await s3Uploadv3(img);
+        console.log(result);
+      }
+      else{
+        new Error("incorrect type");
+      }
+      
+      
+   
+
+      
       const device = await Device.create({
         name,
         price,
