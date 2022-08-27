@@ -8,10 +8,7 @@ class DeviceController {
   async create(req, res, next) {
     try {
       let { name, price, brandId, typeId, info} = req.body;
-
       const { img } = req.files;
-      
-      //let fileName = crypto.randomUUID() + img.name;
 
       if(img.mimetype === "image/png" || 
       img.mimetype === "image/jpg"|| 
@@ -23,10 +20,7 @@ class DeviceController {
       else{
         next(new ApiErorr("409","Incorrect type of file, try jpg/jpeg/png"));
       }
-      
-      
-
-      
+     
       const device = await Device.create({
         name,
         price,
