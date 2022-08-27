@@ -21,7 +21,7 @@ class DeviceController {
         console.log(result);
       }
       else{
-        new Error("incorrect type");
+        next(new ApiErorr("409","Incorrect type of file, try jpg/jpeg/png"));
       }
       
       
