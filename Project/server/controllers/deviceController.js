@@ -1,26 +1,29 @@
-const upload = require('../download_setting/multer')
+const upload = require("../download_setting/multer");
 const { Device, DeviceInfo } = require("../models/models");
 const ApiErorr = require("../error/ApiError");
 const { s3Uploadv3 } = require("../download_setting/s3Service");
-
+const Sequelize = require("sequelize");
 
 class DeviceController {
   async create(req, res, next) {
     try {
-      let { name, price, brandId, typeId, info} = req.body;
+      let { name, price, brandId, typeId, info } = req.body;
+
       const { img } = req.files;
 
-      if(img.mimetype === "image/png" || 
-      img.mimetype === "image/jpg"|| 
-      img.mimetype === "image/jpeg")
-      {
+      //let fileName = crypto.randomUUID() + img.name;
+
+      if (
+        img.mimetype === "image/png" ||
+        img.mimetype === "image/jpg" ||
+        img.mimetype === "image/jpeg"
+      ) {
         var result = await s3Uploadv3(img);
         console.log(result);
+      } else {
+        new Error("incorrect type");
       }
-      else{
-        next(new ApiErorr("409","Incorrect type of file, try jpg/jpeg/png"));
-      }
-     
+
       const device = await Device.create({
         name,
         price,
@@ -47,15 +50,26 @@ class DeviceController {
   }
 
   async getAll(req, res) {
-    let { brandId, typeId } = req.query;
+    let { brandId, typeId, lastId, limit } = req.query;
+    const Op = Sequelize.Op;
+    limit = limit || 9; // максимум устройств
     let devices;
+    const cursor = lastId || 0;
+
     if (
       (!brandId && !typeId) ||
       (brandId && !typeId) ||
       (!brandId && typeId) ||
       (brandId && typeId)
     ) {
-      devices = await Device.findAndCountAll();
+      devices = await Device.findAndCountAll({
+        limit,
+        where: {
+          id: {
+            [Op.gt]: cursor,
+          },
+        },
+      });
     }
     return res.json(devices);
   }
