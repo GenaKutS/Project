@@ -43,7 +43,7 @@ class UserController {
       // генерирую json token
       const token = generateJwt(user.id, user.email, user.role);
       return res.json({ token });
-    } catch (e) {
+    } catch (err) {
       await t.rollback();
       next(ApiError.badRequest(err.message));
     }
