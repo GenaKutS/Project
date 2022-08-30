@@ -18,7 +18,7 @@ class DeviceController {
         img.mimetype === "image/jpg" ||
         img.mimetype === "image/jpeg"
       ) {
-        let result = await s3Uploadv3(img);
+        var result = await s3Uploadv3(img);
         console.log(result);
       } else {
         new Error("incorrect type");
