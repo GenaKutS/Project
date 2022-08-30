@@ -1,5 +1,5 @@
 const { S3 } = require("aws-sdk");
-const crypto = require('crypto');
+const crypto = require("crypto");
 const ApiError = require("../error/ApiError");
 
 /*
@@ -17,14 +17,13 @@ const ApiError = require("../error/ApiError");
    return await Promise.all(params.map((param) => s3.upload(param).promise()));
  };*/
 
-
- exports.s3Uploadv3 = async (file) => {
+exports.s3Uploadv3 = async (file) => {
   const s3 = new S3();
   const params = {
-      Bucket: process.env.AWS_BUCKET_NAME,
-      Key: `uploads/${crypto.randomUUID()}-${file.name}`,
-      Body: file.data,
-    };
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: `uploads/${crypto.randomUUID()}-${file.name}`,
+    Body: file.data,
+  };
 
-    return await s3.upload(params).promise();
+  return await s3.upload(params).promise();
 };

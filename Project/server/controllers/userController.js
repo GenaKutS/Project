@@ -1,5 +1,5 @@
 const ApiError = require("../error/ApiError");
-const crypto = require('crypto');
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { User, Basket } = require("../models/models");
 
@@ -25,17 +25,17 @@ class UserController {
 
     const hashPassword = await crypto.createHash(password, 5);
     try {
-    const user = await User.create({ email, role, password: hashPassword });
-    //create only user
-    const basket = await Basket.create({ userId: user.id });
+      const user = await User.create({ email, role, password: hashPassword });
+      //create only user
+      const basket = await Basket.create({ userId: user.id });
 
-    // генерирую json token
-    const token = generateJwt(user.id, user.email, user.role);
+      // генерирую json token
+      const token = generateJwt(user.id, user.email, user.role);
 
-    return res.json({ token });
-  } catch (e) {
-    next(ApiErorr.badRequest(e.message));
-  }
+      return res.json({ token });
+    } catch (e) {
+      next(ApiErorr.badRequest(e.message));
+    }
   }
 
   async login(req, res) {
