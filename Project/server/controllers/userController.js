@@ -1,5 +1,6 @@
 const ApiError = require("../error/ApiError");
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, Basket } = require("../models/models");
 
@@ -22,19 +23,29 @@ class UserController {
       );
     }
     // ЕСЛИ НИЧЕГО НЕ НАШЛИ  ТО ХЕШИМ И СОЗДАЕМ USER
-
-    const hashPassword = await crypto.createHash(password, 5);
+    const t = await sequelize.transaction();
+    const hashPassword = await bcrypt.hash(password, 5);
     try {
-      const user = await User.create({ email, role, password: hashPassword });
+      const user = await User.create(
+        {
+          email,
+          role,
+          password: hashPassword,
+        },
+        { transaction: t }
+      );
       //create only user
-      const basket = await Basket.create({ userId: user.id });
-
+      const basket = await Basket.create(
+        { userId: user.id },
+        { transaction: t }
+      );
+      await t.commit();
       // генерирую json token
       const token = generateJwt(user.id, user.email, user.role);
-
       return res.json({ token });
     } catch (e) {
-      next(ApiErorr.badRequest(e.message));
+      await t.rollback();
+      next(ApiError.badRequest(e.message));
     }
   }
 
