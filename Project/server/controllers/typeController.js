@@ -11,7 +11,7 @@ class TypeController {
       }
       return res.json(type);
     } catch (e) {
-      next(ApiErorr.badRequest(e.message));
+      next(ApiErorr.badRequest(err.message));
     }
   }
 
