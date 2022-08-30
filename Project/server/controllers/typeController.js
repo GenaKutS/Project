@@ -6,7 +6,7 @@ class TypeController {
     try {
       let { name } = req.body;
       const type = await Type.create({ name });
-      if (name.length <= 0) {
+      if (!name.length) {
         return next(ApiError.badRequest("Некоректне ім'я"));
       }
       return res.json(type);
