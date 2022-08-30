@@ -45,7 +45,7 @@ class UserController {
       return res.json({ token });
     } catch (e) {
       await t.rollback();
-      next(ApiError.badRequest(e.message));
+      next(ApiError.badRequest(err.message));
     }
   }
 
