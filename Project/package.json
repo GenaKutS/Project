@@ -1,0 +1,43 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "node": " node src/TastLinter.js",
+    "lint": "eslint ./src ",
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "husky install"
+  },
+  
+  "eslintIgnore": [".gitignore"],
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GenaKutS/Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GenaKutS/Project/issues"
+  },
+  "homepage": "https://github.com/GenaKutS/Project#readme",
+  "devDependencies": {
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^4.3.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": " npm run lint "
+    }
+  }
+}
