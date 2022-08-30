@@ -16,10 +16,6 @@ class ApiError extends Error {
         "Код состояния ответа HTTP 400 Bad Request указывает, что сервер не смог понять запрос из-за недействительного синтаксиса");
   }
 
-  //   //tatic badRequest() {
-  //     return new ApiError(404, message);
-  //  // }
-
   static internral() {
     this.id,
       (this.statusCode = 500),
