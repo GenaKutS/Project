@@ -2,6 +2,7 @@ const upload = require("../download_setting/multer");
 const { Device, DeviceInfo } = require("../models/models");
 const ApiErorr = require("../error/ApiError");
 const { s3Uploadv3 } = require("../download_setting/s3Service");
+const { deleted } = require("../download_setting/s3Service");
 const Sequelize = require("sequelize");
 
 class DeviceController {
@@ -18,20 +19,24 @@ class DeviceController {
         img.mimetype === "image/jpg" ||
         img.mimetype === "image/jpeg"
       ) {
+        console.log("File Found in S3");
         var result = await s3Uploadv3(img);
-
-        //if(){}
         console.log(result);
+        if (!result) {
+          next(ApiErorr.badRequest(e.message));
+        }
       } else {
         new Error("incorrect type");
       }
-
       const device = await Device.create({
         name,
         price,
         brandId,
         typeId,
         img: result.Location,
+      }).catch(() => {
+        deleted(result.Key);
+        throw new Error("Запись в базе не удалась, файл был удален из бакета");
       });
 
       if (info) {
@@ -46,9 +51,7 @@ class DeviceController {
       }
 
       return res.json(device);
-    } catch (e) {
-      next(ApiErorr.badRequest(e.message));
-    }
+    } catch (e) {}
   }
 
   async getAll(req, res) {
@@ -84,7 +87,7 @@ class DeviceController {
         include: [{ model: DeviceInfo, as: "info" }],
       }).then((device) => {
         if (!device) {
-          return next(ApiError.badRequest("id is not configured correctly"));
+          return next(ApiErorr.badRequest("id is not configured correctly"));
         }
         return res.json(device);
       });

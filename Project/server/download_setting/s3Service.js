@@ -25,5 +25,16 @@ exports.s3Uploadv3 = async (file) => {
     Body: file.data,
   };
 
+  exports.s3deleted = async (Key) => {
+    const s3 = new S3();
+    const params = {
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: Key,
+    };
+    s3.deleteObject(params, function (err, data) {
+      if (err) console.log(err, err.stack); // error
+      else console.log(); // deleted
+    });
+  };
   return await s3.upload(params).promise();
 };
