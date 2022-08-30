@@ -6,7 +6,7 @@ class BrandController {
     try {
       let { name } = req.body;
       const brand = await Brand.create({ name });
-      if (name.length <= 0) {
+      if (!name.length) {
         return next(ApiError.badRequest("Некоректне ім'я"));
       }
       return res.json(type);
