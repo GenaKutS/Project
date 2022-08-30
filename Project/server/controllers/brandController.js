@@ -10,7 +10,7 @@ class BrandController {
         return next(ApiError.badRequest("Некоректне ім'я"));
       }
       return res.json(type);
-    } catch (e) {
+    } catch (err) {
       next(ApiErorr.badRequest(err.message));
     }
   }
