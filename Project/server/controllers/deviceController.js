@@ -23,7 +23,7 @@ class DeviceController {
         var result = await s3Uploadv3(img);
         console.log(result);
         if (!result) {
-          next(ApiErorr.badRequest(e.message));
+          next(ApiErorr.badRequest(err.message));
         }
       } else {
         new Error("incorrect type");
