@@ -20,19 +20,35 @@ class ApiError extends Error {
   //     return new ApiError(404, message);
   //  // }
 
-  static internral(message) {
-    return new ApiError(500, message);
+  static internral() {
+    this.id,
+      (this.statusCode = 500),
+      (this.title = "Internal Server Error."),
+      (this.detail =
+        "Код состояния ответа HTTP 500 Internal Server Error указывает, на внутреннюю ошибку сервера");
   }
 
-  static forbidden(message) {
-    return new ApiError(403, message);
+  static forbidden() {
+    this.id,
+      (this.statusCode = 403),
+      (this.title = "Forbidden Error."),
+      (this.detail =
+        "Код состояния ответа HTTP 403 Forbidden Error указывает, на отсутствие соответствующих полномочий");
   }
 
-  static wrongOperation(message) {
-    return new ApiError(409, message);
+  static wrongOperation() {
+    this.id,
+      (this.statusCode = 409),
+      (this.title = "Conflict Error."),
+      (this.detail =
+        "Код состояния ответа HTTP 409 Conflict Error указывает, на конфликт");
   }
-  static NotFound(message) {
-    return new ApiError(404, message);
+  static NotFound() {
+    this.id,
+      (this.statusCode = 404),
+      (this.title = "Not Found Error."),
+      (this.detail =
+        "Код состояния ответа HTTP 404 Not Found Error указывает, на отсутствие компонента");
   }
 }
 
