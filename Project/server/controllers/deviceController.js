@@ -51,7 +51,7 @@ class DeviceController {
       }
 
       return res.json(device);
-    } catch (e) {}
+    } catch (err) {}
   }
 
   async getAll(req, res) {
@@ -91,8 +91,8 @@ class DeviceController {
         }
         return res.json(device);
       });
-    } catch (e) {
-      next(ApiErorr.badRequest(e.message));
+    } catch (err) {
+      next(ApiErorr.badRequest(err.message));
     }
   }
 }
