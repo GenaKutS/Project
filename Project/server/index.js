@@ -3,7 +3,7 @@ const express = require("express");
 const sequelize = require("./db");
 const models = require("./models/models");
 const multer = require("multer");
-const upload = require('../server/download_setting/multer')
+const upload = require("../server/download_setting/multer");
 const { s3Uploadv3 } = require("../server/download_setting/s3Service");
 const fileUpload = require("express-fileupload");
 const router = require("./routes");
@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "static")));
 app.use(fileUpload({}));
 
-
 app.use("/api", router);
 
 app.post("/upload", upload.array("file"), async (req, res) => {
@@ -30,9 +29,9 @@ app.post("/upload", upload.array("file"), async (req, res) => {
   }
 });
 
-app.get('/team', (req, res) => {
-  res.send('TITORUK KUTZ IVASHCHENKO')
-})
+app.get("/team", (req, res) => {
+  res.send("TITORUK KUTZ IVASHCHENKO");
+});
 
 //обработка ошибок должен быть  последний Middleware
 app.use(errorHandler);
